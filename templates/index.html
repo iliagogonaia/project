@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<style>
+    .film-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .film-item {
+        width: calc(33.33% - 20px);
+        box-sizing: border-box;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+    }
+
+    .film-item img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .no-films {
+
+        position:absolute;
+        top:159%;
+        left:30%;
+        font-size:30px;
+    }
+</style>
+<div class="film-list">
+    {% if films %}
+        {% for film in films %}
+            <div class="film-item">
+                {% if film.filename %}
+                    <img src="{{ url_for('static', filename='images/' ~ film.filename) }}" alt="{{ film.title }}">
+                {% endif %}
+                <h3>{{ film.title }}</h3>
+                <p>Year: {{ film.years }}</p>
+                <p>Budget: ${{ film.budget }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-films">ფილმები არ არის დამატებული.</p>
+    {% endif %}
+</div>
+{% endblock %}

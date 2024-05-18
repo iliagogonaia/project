@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}User{% endblock %}
+
+{% block content %}
+<h2>Welcome, {{ session.user }}</h2>
+<p>Here are your subjects:</p>
+<ul>
+    {% for subject in subjects %}
+        <li>{{ subject }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+
